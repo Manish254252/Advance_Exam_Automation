@@ -1,6 +1,6 @@
 package com.automation.steps;
 
-import com.automation.pages.HomePage;
+
 import com.automation.pages.LoginPage;
 import com.automation.utils.ConfigReader;
 import io.cucumber.java.en.And;
@@ -10,7 +10,7 @@ import io.cucumber.java.en.When;
 import org.junit.Assert;
 
 public class LoginSteps {
-    HomePage homePage = new HomePage();
+
 LoginPage loginPage = new LoginPage();
     @Given("user opens application")
     public void user_opens_application() {
@@ -44,7 +44,7 @@ LoginPage loginPage = new LoginPage();
     @Then("verify user is on homeScreen")
     public void verify_user_is_on_home_screen() {
 
-        Assert.assertTrue(homePage.isCartLogoDisplayed());
+        Assert.assertTrue(false);
 
     }
 

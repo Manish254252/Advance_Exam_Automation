@@ -1,9 +1,9 @@
 package com.automation.utils;
 
-import com.microsoft.playwright.Page;
-import io.cucumber.java.Scenario;
 
-import java.nio.file.Paths;
+import io.cucumber.java.Scenario;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 
 
 public class CucumberReportManager {
@@ -14,11 +14,11 @@ public class CucumberReportManager {
     }
 
     public static void attachScreenShot() {
-        scenario.attach(takeScreenShot(), "image/png", "FailedTestSnap");
+        scenario.attach(takeScreenShot(),"image/png","FailedTestSnap");
     }
 
     public static byte[] takeScreenShot() {
-        Page page = DriverManager.getPage();
-        return page.screenshot() ;
+        TakesScreenshot ts = (TakesScreenshot) DriverManager.getDriver();
+        return ts.getScreenshotAs(OutputType.BYTES);
     }
 }
