@@ -4,10 +4,7 @@ import com.automation.utils.ConfigReader;
 import com.automation.utils.CucumberReportManager;
 import com.automation.utils.DriverManager;
 import com.automation.utils.ExtentReportManager;
-import io.cucumber.java.After;
-import io.cucumber.java.AfterStep;
-import io.cucumber.java.Before;
-import io.cucumber.java.Scenario;
+import io.cucumber.java.*;
 
 import static com.automation.utils.CucumberReportManager.scenario;
 
@@ -18,7 +15,6 @@ public class Hooks {
         ConfigReader.initConfig();
         DriverManager.createDriver();
         CucumberReportManager.initReport(scenario);
-        ExtentReportManager.initExtentReport();
         ExtentReportManager.createTest(scenario.getName());
     }
 
@@ -41,8 +37,16 @@ public class Hooks {
 
         }
         DriverManager.getDriver().quit();
-        ExtentReportManager.flush();
+
+    }
+    @BeforeAll
+    public static void setUpAll() {
+        ExtentReportManager.initExtentReport();
     }
 
+    @AfterAll
+    public static void cleanUpAll() {
+        ExtentReportManager.flush();
+    }
 
 }
